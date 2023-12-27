@@ -31,7 +31,7 @@ class Sprite{
         //drawing the attack
         if(this.isAttacking){
             c.fillStyle = 'blue'
-            c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
+            c.fillRect(this.hitbox.position.x - 100, this.hitbox.position.y, this.hitbox.width + 100, this.hitbox.height)
         }
     }
 

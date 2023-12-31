@@ -33,10 +33,10 @@ class Sprite{
         c.fillRect(this.position.x, this.position.y, this.width, this.height)
 
         //drawing the attack
-        //if(this.isAttacking){
+        if(this.isAttacking){
             c.fillStyle = 'blue'
             c.fillRect(this.hitbox.position.x, this.hitbox.position.y, this.hitbox.width, this.hitbox.height)
-        //}
+        }
     }
 
     update() {
@@ -160,7 +160,7 @@ function animate(){
     }) && 
     player.isAttacking){
         player.isAttacking = false
-        console.log('hello');
+        console.log('player attack');
     }
     if(rectangularCollision({
         rectangle1: enemy,
@@ -168,14 +168,14 @@ function animate(){
     }) && 
     enemy.isAttacking){
         enemy.isAttacking = false
-        console.log('enemy');
+        console.log('enemy attack');
     }
 
 }
 animate()
 
 window.addEventListener('keydown', (event) => {
-    console.log(event.key)
+    //console.log(event.key)
     switch(event.key){
         //player keydown
         case 'd':
@@ -209,7 +209,7 @@ window.addEventListener('keydown', (event) => {
             enemy.isAttacking = true
             break
     }
-    console.log(event.key);
+    //console.log(event.key);
 }) 
 window.addEventListener('keyup', (event) => {
     switch(event.key){
@@ -231,5 +231,5 @@ window.addEventListener('keyup', (event) => {
             keys.ArrowLeft.pressed = false
             break;
     }
-    console.log(event.key);
+    //console.log(event.key);
 })

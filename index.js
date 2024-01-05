@@ -16,9 +16,19 @@ const background = new Sprite({
     imageSrc: './img/background.png'
 })
 
+const shop = new Sprite({
+    position: {
+        x: 700,
+        y: 170
+    },
+    imageSrc: './img/shop_anim.png',
+    scale: 2.5
+    , frames: 6
+})
+
 const player = new Character({
     position: {
-    x: 0,
+    x: 10,
     y: 0,
     },
     velocity: {
@@ -28,6 +38,28 @@ const player = new Character({
     offset: {
         x: 0,
         y: 0
+    },
+    imageSrc: './img/samu/Idle.png',
+    frames: 4,
+    scale: 3,
+    offset: {
+        x: 215,
+        y: 180
+    },
+    sprites: {
+        idle: {
+            imageSrc: './img/samu/Idle.png',
+            frames: 4
+        },
+        run: {
+            imageSrc: './img/samu/Run.png',
+            frames: 8,
+        },
+        jump: {
+            imageSrc: './img/samu/Jump.png',
+            frames: 2,
+        }
+
     }
 }) 
 
@@ -113,17 +145,25 @@ function animate(){
     c.fillStyle = 'black'
     c.fillRect(0, 0, canvas.width, canvas.height)
     background.update()
+    shop.update()
     player.update()
-    enemy.update()
+    //enemy.update()
 
     player.velocity.x = 0
     enemy.velocity.x = 0
 
     //player moves
+    player.switchS('idle')
     if(keys.a.pressed && player.lastKey === 'a'){
         player.velocity.x = -5
+        player.switchS('run')
     } else if(keys.d.pressed && player.lastKey === 'd'){
         player.velocity.x = 5
+        player.switchS('run')
+    }
+
+    if(player.velocity.y < 0) {
+        player.switchS('jump')
     }
 
     //enemy moves
